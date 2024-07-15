@@ -62,10 +62,7 @@ io.on('connection', (socket) => {
     }
   });
 
-  socket.on('sendMessage', (message) => {
-    console.log('Received message:', message);
-    socket.emit('messageAcknowledged', 'Message received: ' + message);
-  });
+
 
   socket.on("move", (move: MOVE) => {
     console.log("backend ka mobve mae aagye",move)
