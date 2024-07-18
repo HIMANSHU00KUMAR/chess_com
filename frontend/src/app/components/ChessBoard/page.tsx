@@ -4,21 +4,29 @@ import io from 'socket.io-client';
 import ChessBoard2 from '../chessBoard2/page';
 
 
-const socket = io('http://localhost:5000', {
-  autoConnect: false
-});
+
+const socket = io({autoConnect:false});
 
 const ChessBoard: React.FC = () => {
+  const [transport, setTransport] = useState("N/A");
   const [boardState, setBoardState] = useState<string>('');
   const [playerRole, setPlayerRole] = useState<string>('');
   const [connected, setConnected] = useState<boolean>(false);
 
   useEffect(() => {
+
     socket.on('connect', () => {
       setConnected(true);
+      setTransport(socket.io.engine.transport.name);
+
+      socket.io.engine.on("upgrade", (transport) => {
+        setTransport(transport.name);
+      });
     });
 
+
     socket.on('disconnect', () => {
+      setTransport("N/A")
       setConnected(false);
     });
 
@@ -62,6 +70,7 @@ const ChessBoard: React.FC = () => {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-900 text-white p-4">
+      <h2>transport is {transport}</h2>
       <h1 className="text-4xl font-bold mb-8">Play and Connect</h1>
       <button
         onClick={handlePlay}
