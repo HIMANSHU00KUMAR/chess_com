@@ -1,7 +1,9 @@
 "use client";
 import { useEffect, useState } from 'react';
 import io from 'socket.io-client';
-import ChessBoard2 from '../chessBoard2/page';
+import { ChessBoard2 } from '../chessBoard2/page';
+
+
 
 
 
@@ -69,7 +71,7 @@ const ChessBoard: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-900 text-white p-4">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-800 text-white p-4">
       <h2>transport is {transport}</h2>
       <h1 className="text-4xl font-bold mb-8">Play and Connect</h1>
       <button
