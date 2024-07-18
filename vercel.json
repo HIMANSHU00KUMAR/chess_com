@@ -1,0 +1,56 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "next.config.js",
+        "use": "@vercel/next"
+      }
+    ],
+    "rewrites": [
+      {
+        "source": "/api/:path*",
+        "destination": "/api/:path*"
+      },
+      {
+        "source": "/:path*",
+        "destination": "/:path*"
+      }
+    ],
+    "redirects": [
+      {
+        "source": "/old-path",
+        "destination": "/new-path",
+        "permanent": true
+      }
+    ],
+    "headers": [
+      {
+        "source": "/(.*)",
+        "headers": [
+          {
+            "key": "X-Content-Type-Options",
+            "value": "nosniff"
+          },
+          {
+            "key": "X-Frame-Options",
+            "value": "DENY"
+          },
+          {
+            "key": "X-XSS-Protection",
+            "value": "1; mode=block"
+          }
+        ]
+      }
+    ],
+    "env": {
+      "NEXT_PUBLIC_API_URL": "https://api.yourservice.com",
+      "ANOTHER_ENV_VARIABLE": "value"
+    },
+    "functions": {
+      "api/index.ts": {
+        "memory": 1024,
+        "maxDuration": 10
+      }
+    }
+  }
+  
