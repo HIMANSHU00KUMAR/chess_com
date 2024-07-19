@@ -9,7 +9,7 @@ interface ChessBoard2Props {
   onMove: (from: string, to: string) => void;
 }
 
-export const ChessBoard2: React.FC<ChessBoard2Props> = ({ boardState, onMove }) => {
+export const Help: React.FC<ChessBoard2Props> = ({ boardState, onMove }) => {
   const verticalAxis = ["8", "7", "6", "5", "4", "3", "2", "1"];
   const horizontalAxis = ["a", "b", "c", "d", "e", "f", "g", "h"];
   const pieces: { [key: string]: string } = {
@@ -114,3 +114,6 @@ export const ChessBoard2: React.FC<ChessBoard2Props> = ({ boardState, onMove }) 
     </DndProvider>
   );
 };
+
+
+// export default ChessBoard2

@@ -1,13 +1,11 @@
 "use client";
 import { useEffect, useState } from 'react';
 import io from 'socket.io-client';
-import { ChessBoard2 } from '../chessBoard2/page';
-
-
-
+import { Help } from '@/helper/Help';
 
 
 const socket = io({autoConnect:false});
+const name="himanshu";
 
 const ChessBoard: React.FC = () => {
   const [transport, setTransport] = useState("N/A");
@@ -83,7 +81,11 @@ const ChessBoard: React.FC = () => {
       </button>
       <h1 className="text-4xl font-bold mb-8">Chess Game</h1>
       <p className="text-lg mb-4">Player Role: {playerRole}</p>
-      <ChessBoard2 boardState={boardState} onMove={handleMove} />
+
+      <Help boardState={boardState} onMove={handleMove}  />
+
+
+      {/* <ChessBoard2 boardState={boardState} onMove={handleMove} /> */}
     </div>
   );
 };
